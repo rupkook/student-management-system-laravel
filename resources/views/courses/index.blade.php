@@ -83,29 +83,35 @@
 
                 <!-- Search and Filter -->
                 <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
-                    <div class="flex flex-wrap gap-4">
-                        <div class="flex-1 min-w-[250px]">
-                            <div class="relative">
-                                <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
-                                <input type="text" placeholder="Search courses by title or code..." 
-                                       class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    <form method="GET" action="{{ route('courses.index') }}">
+                        <div class="flex flex-wrap gap-4">
+                            <div class="flex-1 min-w-[250px]">
+                                <div class="relative">
+                                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                                    <input type="text" name="search" placeholder="Search courses by title or code..." 
+                                           value="{{ request('search') }}"
+                                           class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                </div>
                             </div>
+                            <select name="level" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                <option value="">All Levels</option>
+                                <option value="beginner" {{ request('level') == 'beginner' ? 'selected' : '' }}>Beginner</option>
+                                <option value="intermediate" {{ request('level') == 'intermediate' ? 'selected' : '' }}>Intermediate</option>
+                                <option value="advanced" {{ request('level') == 'advanced' ? 'selected' : '' }}>Advanced</option>
+                            </select>
+                            <select name="status" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                <option value="">All Status</option>
+                                <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Active</option>
+                                <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>Inactive</option>
+                            </select>
+                            <button type="submit" class="bg-purple-100 text-purple-700 px-4 py-2 rounded-lg hover:bg-purple-200 transition">
+                                <i class="fas fa-filter mr-2"></i> Filter
+                            </button>
+                            <a href="{{ route('courses.index') }}" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition">
+                                <i class="fas fa-times mr-2"></i> Clear
+                            </a>
                         </div>
-                        <select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
-                            <option value="">All Levels</option>
-                            <option value="beginner">Beginner</option>
-                            <option value="intermediate">Intermediate</option>
-                            <option value="advanced">Advanced</option>
-                        </select>
-                        <select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
-                            <option value="">All Status</option>
-                            <option value="1">Active</option>
-                            <option value="0">Inactive</option>
-                        </select>
-                        <button class="bg-purple-100 text-purple-700 px-4 py-2 rounded-lg hover:bg-purple-200 transition">
-                            <i class="fas fa-filter mr-2"></i> Filter
-                        </button>
-                    </div>
+                    </form>
                 </div>
 
                 <!-- Courses Grid -->

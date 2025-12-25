@@ -7,9 +7,32 @@ use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $courses = Course::latest()->paginate(10);
+        $query = Course::query();
+        
+        // Search functionality
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'like', '%' . $search . '%')
+                  ->orWhere('code', 'like', '%' . $search . '%');
+            });
+        }
+        
+        // Filter by level
+        if ($request->filled('level')) {
+            $query->where('level', $request->input('level'));
+        }
+        
+        // Filter by status
+        if ($request->filled('status') && $request->input('status') !== '') {
+            $isActive = $request->input('status') == '1';
+            $query->where('is_active', $isActive);
+        }
+        
+        $courses = $query->latest()->paginate(10);
+        
         return view('courses.index', compact('courses'));
     }
 

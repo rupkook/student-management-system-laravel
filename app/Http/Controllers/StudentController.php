@@ -9,9 +9,28 @@ use Illuminate\Support\Str;
 
 class StudentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $students = Student::latest()->paginate(10);
+        $query = Student::query();
+        
+        // Search functionality
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $query->where(function($q) use ($search) {
+                $q->where('first_name', 'like', '%' . $search . '%')
+                  ->orWhere('last_name', 'like', '%' . $search . '%')
+                  ->orWhere('email', 'like', '%' . $search . '%')
+                  ->orWhere('student_id', 'like', '%' . $search . '%');
+            });
+        }
+        
+        // Filter by status
+        if ($request->filled('status') && $request->input('status') !== '') {
+            $query->where('status', $request->input('status'));
+        }
+        
+        $students = $query->latest()->paginate(10);
+        
         return view('students.index', compact('students'));
     }
 

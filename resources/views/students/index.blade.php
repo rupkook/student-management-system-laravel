@@ -83,25 +83,31 @@
 
                 <!-- Search and Filter -->
                 <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
-                    <div class="flex flex-wrap gap-4">
-                        <div class="flex-1 min-w-[250px]">
-                            <div class="relative">
-                                <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
-                                <input type="text" placeholder="Search students by name, email, or ID..." 
-                                       class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    <form method="GET" action="{{ route('students.index') }}">
+                        <div class="flex flex-wrap gap-4">
+                            <div class="flex-1 min-w-[250px]">
+                                <div class="relative">
+                                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                                    <input type="text" name="search" placeholder="Search students by name, email, or ID..." 
+                                           value="{{ request('search') }}"
+                                           class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                </div>
                             </div>
+                            <select name="status" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                <option value="">All Status</option>
+                                <option value="active" {{ request('status') == 'active' ? 'selected' : '' }}>Active</option>
+                                <option value="inactive" {{ request('status') == 'inactive' ? 'selected' : '' }}>Inactive</option>
+                                <option value="suspended" {{ request('status') == 'suspended' ? 'selected' : '' }}>Suspended</option>
+                                <option value="graduated" {{ request('status') == 'graduated' ? 'selected' : '' }}>Graduated</option>
+                            </select>
+                            <button type="submit" class="bg-purple-100 text-purple-700 px-4 py-2 rounded-lg hover:bg-purple-200 transition">
+                               Filter<i class="fas fa-filter mr-2"></i> 
+                            </button>
+                            <a href="{{ route('students.index') }}" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition">
+                                <i class="fas fa-times mr-2"></i> Clear
+                            </a>
                         </div>
-                        <select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
-                            <option value="">All Status</option>
-                            <option value="active">Active</option>
-                            <option value="inactive">Inactive</option>
-                            <option value="suspended">Suspended</option>
-                            <option value="graduated">Graduated</option>
-                        </select>
-                        <button class="bg-purple-100 text-purple-700 px-4 py-2 rounded-lg hover:bg-purple-200 transition">
-                            <i class="fas fa-filter mr-2"></i> Filter
-                        </button>
-                    </div>
+                    </form>
                 </div>
 
                 <!-- Students Table -->

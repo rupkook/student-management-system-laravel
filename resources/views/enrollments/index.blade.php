@@ -83,25 +83,37 @@
 
                 <!-- Search and Filter -->
                 <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
-                    <div class="flex flex-wrap gap-4">
-                        <div class="flex-1 min-w-[250px]">
-                            <div class="relative">
-                                <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
-                                <input type="text" placeholder="Search enrollments by student or course..." 
-                                       class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    <form method="GET" action="{{ route('enrollments.index') }}">
+                        <div class="flex flex-wrap gap-4">
+                            <div class="flex-1 min-w-[250px]">
+                                <div class="relative">
+                                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                                    <input type="text" name="search" placeholder="Search enrollments by student or course..." 
+                                           value="{{ request('search') }}"
+                                           class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                </div>
                             </div>
+                            <select name="status" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                <option value="">All Status</option>
+                                <option value="active" {{ request('status') == 'active' ? 'selected' : '' }}>Active</option>
+                                <option value="completed" {{ request('status') == 'completed' ? 'selected' : '' }}>Completed</option>
+                                <option value="dropped" {{ request('status') == 'dropped' ? 'selected' : '' }}>Dropped</option>
+                                <option value="failed" {{ request('status') == 'failed' ? 'selected' : '' }}>Failed</option>
+                            </select>
+                            <input type="number" name="min_grade" placeholder="Min Grade" min="0" max="100"
+                                   value="{{ request('min_grade') }}"
+                                   class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <input type="number" name="max_grade" placeholder="Max Grade" min="0" max="100"
+                                   value="{{ request('max_grade') }}"
+                                   class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <button type="submit" class="bg-purple-100 text-purple-700 px-4 py-2 rounded-lg hover:bg-purple-200 transition">
+                                <i class="fas fa-filter mr-2"></i> Filter
+                            </button>
+                            <a href="{{ route('enrollments.index') }}" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition">
+                                <i class="fas fa-times mr-2"></i> Clear
+                            </a>
                         </div>
-                        <select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
-                            <option value="">All Status</option>
-                            <option value="active">Active</option>
-                            <option value="completed">Completed</option>
-                            <option value="dropped">Dropped</option>
-                            <option value="failed">Failed</option>
-                        </select>
-                        <button class="bg-purple-100 text-purple-700 px-4 py-2 rounded-lg hover:bg-purple-200 transition">
-                            <i class="fas fa-filter mr-2"></i> Filter
-                        </button>
-                    </div>
+                    </form>
                 </div>
 
                 <!-- Enrollments Table -->

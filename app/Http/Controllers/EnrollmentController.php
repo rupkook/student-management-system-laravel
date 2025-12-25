@@ -9,13 +9,44 @@ use Illuminate\Http\Request;
 
 class EnrollmentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $enrollments = Enrollment::with(['student', 'course'])
+        $query = Enrollment::with(['student', 'course'])
             ->whereHas('student')
-            ->whereHas('course')
-            ->latest()
-            ->paginate(10);
+            ->whereHas('course');
+        
+        // Search functionality
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $query->where(function($q) use ($search) {
+                $q->whereHas('student', function($sq) use ($search) {
+                    $sq->where('first_name', 'like', '%' . $search . '%')
+                       ->orWhere('last_name', 'like', '%' . $search . '%')
+                       ->orWhere('email', 'like', '%' . $search . '%')
+                       ->orWhere('student_id', 'like', '%' . $search . '%');
+                })
+                ->orWhereHas('course', function($cq) use ($search) {
+                    $cq->where('title', 'like', '%' . $search . '%')
+                       ->orWhere('code', 'like', '%' . $search . '%');
+                });
+            });
+        }
+        
+        // Filter by status
+        if ($request->filled('status') && $request->input('status') !== '') {
+            $query->where('status', $request->input('status'));
+        }
+        
+        // Filter by grade range
+        if ($request->filled('min_grade')) {
+            $query->where('grade', '>=', $request->input('min_grade'));
+        }
+        if ($request->filled('max_grade')) {
+            $query->where('grade', '<=', $request->input('max_grade'));
+        }
+        
+        $enrollments = $query->latest()->paginate(10);
+        
         return view('enrollments.index', compact('enrollments'));
     }
 
