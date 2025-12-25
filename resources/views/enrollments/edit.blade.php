@@ -72,11 +72,15 @@
                         <!-- Course Selection -->
                         <div class="mb-6">
                             <label class="block text-sm font-medium text-gray-700 mb-2">Course</label>
-                            <select name="course_id" required
-                                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <select name="course_id" required id="course-select"
+                                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    onchange="updateCourseInfo()">
                                 <option value="">Select Course</option>
                                 @foreach($courses as $course)
-                                    <option value="{{ $course->id }}" {{ $enrollment->course_id == $course->id ? 'selected' : '' }}>
+                                    <option value="{{ $course->id }}" 
+                                        data-credits="{{ $course->credit_hours }}"
+                                        data-code="{{ $course->code }}"
+                                        {{ $enrollment->course_id == $course->id ? 'selected' : '' }}>
                                         {{ $course->title }} - {{ $course->code }}
                                     </option>
                                 @endforeach
@@ -84,6 +88,23 @@
                             @error('course_id')
                                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
+                        </div>
+
+                        <!-- Course Information Display -->
+                        <div id="course-info" class="mb-6 hidden">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Course Information</label>
+                            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <p class="text-xs text-blue-600 font-medium">Credit Hours</p>
+                                        <p class="text-lg font-bold text-blue-800" id="credit-hours">-</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-blue-600 font-medium">Course Code</p>
+                                        <p class="text-lg font-bold text-blue-800" id="course-code">-</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Enrollment Date -->
@@ -150,5 +171,49 @@
             </div>
         </main>
     </div>
+
+    <script>
+        function updateCourseInfo() {
+            const courseSelect = document.getElementById('course-select');
+            const courseInfo = document.getElementById('course-info');
+            const creditHoursEl = document.getElementById('credit-hours');
+            const courseCodeEl = document.getElementById('course-code');
+            
+            const selectedOption = courseSelect.options[courseSelect.selectedIndex];
+            
+            if (courseSelect.value && selectedOption && selectedOption.value !== "") {
+                const credits = selectedOption.getAttribute('data-credits');
+                const code = selectedOption.getAttribute('data-code');
+                
+                creditHoursEl.textContent = credits ? credits + ' credits' : 'N/A';
+                courseCodeEl.textContent = code || 'N/A';
+                
+                courseInfo.classList.remove('hidden');
+                courseInfo.classList.add('animate-fadeIn');
+            } else {
+                courseInfo.classList.add('hidden');
+                creditHoursEl.textContent = '-';
+                courseCodeEl.textContent = '-';
+            }
+        }
+        
+        // Initialize on page load if course is pre-selected
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCourseInfo();
+        });
+        
+        // Add fade-in animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(-10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .animate-fadeIn {
+                animation: fadeIn 0.3s ease-out;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>

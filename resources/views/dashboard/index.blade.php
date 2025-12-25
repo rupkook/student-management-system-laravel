@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Management System - Dashboard</title>
+    <title>Dashboard - EduManage | Student Management System</title>
+    <meta name="description" content="EduManage Dashboard - Comprehensive overview of students, courses, and enrollments">
+    <meta name="keywords" content="dashboard, student management, education, analytics">
+    <meta name="author" content="EduManage System">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iOCIgZmlsbD0idXJsKCNncmFkaWVudDApIi8+CjxwYXRoIGQ9Ik04IDEySDI0VjIwSDhWMTJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTAgNkgxNlYxMEgxMFY2WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTE2IDZIMjJWMTBIMTRWNloiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik04IDE0SDE2VjE4SDhWMTRaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTggMTZIMjRWSDIwVjE2WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iOCAyMEgxNlYyNEg4VjIwWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTE4IDIwSDI0VjI0SDE4VjIwWiIgZmlsbD0id2hpdGUiLz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQwIiB4MT0iMCIgeTE9IjAiIHgyPSIzMiIgeTI9IjMyIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzY2N2VlYSIvPgo8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM3NjRiYTIiLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8L3N2Zz4=">
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iNDgiIGZpbGw9InVybCgjZ3JhZGllbnQwKSIvPgo8cGF0aCBkPSJNNDggNzJIMTQ0VjEyMEg0OFY3MloiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik02MCAzNkg5NlY2MEg2MFYzNloiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ijk2IDM2SDEzMlY2MEg5NlYzNloiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9IjQ4IDg0SDk2VjEwOEg0OFY4NFoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9IjEwOCA5NkgxNDRWMTA4SDEwOFY5NloiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9IjQ4IDEyMEg5NlYxNDQgSDhWMTIwWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iMTA4IDEyMEgxNDRWMTQ0SDEwOFYxMjBaIiBmaWxsPSJ3aGl0ZSIvPgo8ZGVmcz4KPGxpbmVhckdyYWRpZW50IGlkPSJncmFkaWVudDAiIHgxPSIwIiB5MT0iMCIgeDI9IjE5MiIgeTI9IjE5MiI+CjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM2NjdlZWEiLz4KPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjNzY0YmEyIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -351,10 +359,10 @@
         let studentsByStatus, coursesByLevel, enrollmentsByMonth;
         let totalStudents, totalCourses, totalEnrollments, activeStudents;
         
-        // Set data from backend
-        studentsByStatus = @json($studentsByStatus);
-        coursesByLevel = @json($coursesByLevel);
-        enrollmentsByMonth = @json($enrollmentsByMonth);
+        // Set data from backend with fallbacks
+        studentsByStatus = @json($studentsByStatus) || { 'active': 0, 'inactive': 0 };
+        coursesByLevel = @json($coursesByLevel) || { 'beginner': 0, 'intermediate': 0, 'advanced': 0 };
+        enrollmentsByMonth = @json($enrollmentsByMonth) || { 'Current': 0 };
         
         // Set numeric data
         totalStudents = parseInt('{{ $totalStudents }}');
@@ -370,6 +378,12 @@
             if (statsChart) {
                 statsChart.destroy();
             }
+            
+            // Ensure we have valid data
+            if (!totalStudents || isNaN(totalStudents)) totalStudents = 0;
+            if (!totalCourses || isNaN(totalCourses)) totalCourses = 0;
+            if (!totalEnrollments || isNaN(totalEnrollments)) totalEnrollments = 0;
+            if (!activeStudents || isNaN(activeStudents)) activeStudents = 0;
 
             let config = {
                 type: 'bar',
@@ -416,9 +430,11 @@
                     
                 case 'students':
                     config.type = 'doughnut';
-                    config.data.labels = Object.keys(studentsByStatus);
+                    const studentLabels = Object.keys(studentsByStatus || {});
+                    const studentData = Object.values(studentsByStatus || {});
+                    config.data.labels = studentLabels.length > 0 ? studentLabels : ['No Data'];
                     config.data.datasets = [{
-                        data: Object.values(studentsByStatus),
+                        data: studentData.length > 0 ? studentData : [1],
                         backgroundColor: ['#10B981', '#3B82F6', '#F59E0B', '#EF4444'],
                         borderWidth: 0
                     }];
@@ -427,9 +443,11 @@
                     
                 case 'courses':
                     config.type = 'polarArea';
-                    config.data.labels = Object.keys(coursesByLevel);
+                    const courseLabels = Object.keys(coursesByLevel || {});
+                    const courseData = Object.values(coursesByLevel || {});
+                    config.data.labels = courseLabels.length > 0 ? courseLabels : ['No Data'];
                     config.data.datasets = [{
-                        data: Object.values(coursesByLevel),
+                        data: courseData.length > 0 ? courseData : [1],
                         backgroundColor: ['#8B5CF6', '#3B82F6', '#10B981', '#F59E0B', '#EF4444'],
                         borderWidth: 0
                     }];
@@ -438,10 +456,12 @@
                     
                 case 'enrollments':
                     config.type = 'line';
-                    config.data.labels = Object.keys(enrollmentsByMonth);
+                    const enrollmentLabels = Object.keys(enrollmentsByMonth || {});
+                    const enrollmentData = Object.values(enrollmentsByMonth || {});
+                    config.data.labels = enrollmentLabels.length > 0 ? enrollmentLabels : ['No Data'];
                     config.data.datasets = [{
                         label: 'Enrollments',
-                        data: Object.values(enrollmentsByMonth),
+                        data: enrollmentData.length > 0 ? enrollmentData : [0],
                         borderColor: '#8B5CF6',
                         backgroundColor: 'rgba(139, 92, 246, 0.1)',
                         borderWidth: 3,

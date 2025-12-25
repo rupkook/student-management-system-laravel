@@ -112,7 +112,7 @@
                                             <span class="font-mono bg-gray-100 px-2 py-1 rounded">{{ $enrollment->course->code }}</span>
                                         </p>
                                         <p><span class="font-medium">Level:</span> {{ $enrollment->course->level }}</p>
-                                        <p><span class="font-medium">Credits:</span> {{ $enrollment->course->credits }}</p>
+                                        <p><span class="font-medium">Credits:</span> {{ $enrollment->course->credit_hours }}</p>
                                         <p><span class="font-medium">Status:</span> 
                                             <span class="px-2 py-1 text-xs rounded-full 
                                                 @if($enrollment->course->is_active) bg-green-100 text-green-800
