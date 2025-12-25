@@ -243,13 +243,14 @@
     </div>
     
     <script>
-        // Loading text animation
+        // Enhanced loading text animation
         const loadingTexts = [
-            'Initializing...',
-            'Loading resources...',
-            'Preparing dashboard...',
+            'Initializing AI-powered system...',
+            'Loading neural networks...',
+            'Preparing smart dashboard...',
+            'Analyzing student data...',
             'Almost ready...',
-            'Welcome!'
+            'Welcome to the future!'
         ];
         
         let textIndex = 0;
@@ -263,10 +264,35 @@
         // Update loading text every 600ms
         const textInterval = setInterval(updateLoadingText, 600);
         
-        // Redirect to dashboard after 3.5 seconds
-        setTimeout(() => {
+        // Particle System
+        const createParticle = () => {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = Math.random() * window.innerHeight + 'px';
+            particle.style.width = Math.random() * 4 + 2 + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.background = `rgba(255, 255, 255, ${Math.random() * 0.8 + 0.2})`;
+            particle.style.borderRadius = '50%';
+            particle.style.animationDelay = Math.random() * 8 + 's';
+            particle.style.animationDuration = (Math.random() * 8 + 8) + 's';
+            
+            document.getElementById('particles').appendChild(particle);
+            
+            // Remove particle after animation
+            setTimeout(() => {
+                particle.remove();
+            }, 16000);
+        };
+        
+        // Create particles continuously
+        const particleInterval = setInterval(createParticle, 200);
+        
+        // Skip intro function
+        const skipIntro = () => {
             clearInterval(textInterval);
-            loadingTextElement.textContent = 'Redirecting...';
+            clearInterval(particleInterval);
+            loadingTextElement.textContent = 'Entering dashboard...';
             
             // Add fade out effect
             document.body.style.transition = 'opacity 0.5s ease-out';
@@ -276,15 +302,44 @@
             setTimeout(() => {
                 window.location.href = '/dashboard';
             }, 500);
-        }, 3500);
+        };
         
-        // Add some interactive effects
+        // Auto-redirect after 4.5 seconds
+        setTimeout(() => {
+            skipIntro();
+        }, 4500);
+        
+        // Interactive effects
         document.addEventListener('DOMContentLoaded', () => {
-            // Add hover effect to features
-            const features = document.querySelectorAll('.grid > div');
+            // Add hover effect to feature cards
+            const features = document.querySelectorAll('.feature-card');
             features.forEach((feature, index) => {
-                feature.style.animationDelay = `${1.2 + (index * 0.1)}s`;
+                feature.style.animationDelay = `${1.2 + (index * 0.2)}s`;
             });
+            
+            // Add mouse move effect for parallax
+            document.addEventListener('mousemove', (e) => {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                
+                const logo = document.querySelector('.animate-float');
+                if (logo) {
+                    logo.style.transform = `translateY(-20px) rotateX(${(y - 0.5) * 10}deg) rotateY(${(x - 0.5) * 10}deg)`;
+                }
+            });
+            
+            // Add keyboard shortcut
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    skipIntro();
+                }
+            });
+            
+            // Create initial particles
+            for (let i = 0; i < 20; i++) {
+                setTimeout(createParticle, i * 100);
+            }
         });
     </script>
 </body>
