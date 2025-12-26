@@ -53,8 +53,8 @@
         }
         
         @keyframes glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.5); }
-            50% { box-shadow: 0 0 40px rgba(102, 126, 234, 0.8), 0 0 60px rgba(118, 75, 162, 0.4); }
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(255, 255, 255, 0.5), 0 0 60px rgba(255, 255, 255, 0.2); }
         }
         
         @keyframes typewriter {
@@ -68,19 +68,19 @@
         }
         
         /* Animation Classes */
-        .animate-fadeInUp { animation: fadeInUp 1s ease-out; }
-        .animate-slideInLeft { animation: slideInLeft 1.2s ease-out; }
-        .animate-slideInRight { animation: slideInRight 1.2s ease-out; }
+        .animate-fadeInUp { animation: fadeInUp 0.8s ease-out; }
+        .animate-slideInLeft { animation: slideInLeft 1s ease-out; }
+        .animate-slideInRight { animation: slideInRight 1s ease-out; }
         .animate-pulse { animation: pulse 2s infinite; }
         .animate-float { animation: float 3s ease-in-out infinite; }
         .animate-gradient { animation: gradientShift 4s ease infinite; }
         .animate-glow { animation: glow 2s ease-in-out infinite; }
-        .animate-typewriter { animation: typewriter 2s steps(20) forwards; }
+        .animate-typewriter { animation: typewriter 1.5s steps(20) forwards; }
         .animate-blink { animation: blink 1s infinite; }
         
         /* Background Styles */
         .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #667eea 100%);
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 25%, #ec4899 50%, #f43f5e 75%, #6366f1 100%);
             background-size: 400% 400%;
         }
         
@@ -94,17 +94,17 @@
         
         /* Glass Morphism */
         .glass {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
         
         /* Advanced Loader */
         .loader {
             width: 50px;
             height: 50px;
-            border: 3px solid rgba(255, 255, 255, 0.2);
-            border-top: 3px solid #fff;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid #ffffff;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -117,10 +117,10 @@
         /* Progress Bar */
         .progress-bar {
             height: 6px;
-            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
             background-size: 200% 100%;
             border-radius: 3px;
-            animation: progress 3s ease-out forwards, gradientShift 2s ease infinite;
+            animation: progress 2s ease-out forwards, gradientShift 1s ease infinite;
         }
         
         @keyframes progress {
@@ -128,32 +128,15 @@
             to { width: 100%; }
         }
         
-        /* Glitch Effect */
+        /* Clean Title Effect */
         .glitch {
             position: relative;
             color: white;
             font-size: 4rem;
-            font-weight: bold;
+            font-weight: 700;
             text-transform: uppercase;
-            text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
-                        -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
-                        0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
-            animation: glitch 1s linear infinite;
-        }
-        
-        @keyframes glitch {
-            0%, 100% { text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
-                                   -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
-                                   0.025em 0.05em 0 rgba(0, 0, 255, 0.75); }
-            25% { text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
-                             0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
-                             -0.05em -0.05em 0 rgba(0, 0, 255, 0.75); }
-            50% { text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
-                             0.05em 0 0 rgba(0, 255, 0, 0.75),
-                             0 -0.05em 0 rgba(0, 0, 255, 0.75); }
-            75% { text-shadow: -0.025em 0 0 rgba(255, 0, 0, 0.75),
-                             -0.025em -0.025em 0 rgba(0, 255, 0, 0.75),
-                             -0.025em -0.05em 0 rgba(0, 0, 255, 0.75); }
+            letter-spacing: 0.05em;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
         }
         
         /* Feature Cards */
@@ -213,24 +196,24 @@
         <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto animate-fadeInUp" style="animation-delay: 1.2s;">
             <div class="feature-card glass rounded-xl p-6 text-center">
                 <div class="mb-4">
-                    <i class="fas fa-brain text-4xl text-blue-300"></i>
+                    <i class="fas fa-chart-line text-4xl text-indigo-300"></i>
                 </div>
-                <h3 class="font-bold text-lg mb-2">AI Analytics</h3>
-                <p class="text-sm opacity-80">Intelligent insights and predictions</p>
+                <h3 class="font-bold text-lg mb-2">Smart Analytics</h3>
+                <p class="text-sm opacity-90">Real-time insights and reports</p>
             </div>
             <div class="feature-card glass rounded-xl p-6 text-center" style="animation-delay: 0.2s;">
                 <div class="mb-4">
-                    <i class="fas fa-users text-4xl text-green-300"></i>
+                    <i class="fas fa-graduation-cap text-4xl text-pink-300"></i>
                 </div>
-                <h3 class="font-bold text-lg mb-2">Smart Management</h3>
-                <p class="text-sm opacity-80">Automated student tracking</p>
+                <h3 class="font-bold text-lg mb-2">Easy Management</h3>
+                <p class="text-sm opacity-90">Streamlined student tracking</p>
             </div>
             <div class="feature-card glass rounded-xl p-6 text-center" style="animation-delay: 0.4s;">
                 <div class="mb-4">
-                    <i class="fas fa-rocket text-4xl text-purple-300"></i>
+                    <i class="fas fa-shield-alt text-4xl text-rose-300"></i>
                 </div>
-                <h3 class="font-bold text-lg mb-2">Lightning Fast</h3>
-                <p class="text-sm opacity-80">Optimized performance</p>
+                <h3 class="font-bold text-lg mb-2">Secure Platform</h3>
+                <p class="text-sm opacity-90">Protected data storage</p>
             </div>
         </div>
         
@@ -270,23 +253,23 @@
             particle.className = 'particle';
             particle.style.left = Math.random() * window.innerWidth + 'px';
             particle.style.top = Math.random() * window.innerHeight + 'px';
-            particle.style.width = Math.random() * 4 + 2 + 'px';
+            particle.style.width = Math.random() * 3 + 1 + 'px';
             particle.style.height = particle.style.width;
-            particle.style.background = `rgba(255, 255, 255, ${Math.random() * 0.8 + 0.2})`;
+            particle.style.background = `rgba(255, 255, 255, ${Math.random() * 0.6 + 0.1})`;
             particle.style.borderRadius = '50%';
-            particle.style.animationDelay = Math.random() * 8 + 's';
-            particle.style.animationDuration = (Math.random() * 8 + 8) + 's';
+            particle.style.animationDelay = Math.random() * 10 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
             
             document.getElementById('particles').appendChild(particle);
             
             // Remove particle after animation
             setTimeout(() => {
                 particle.remove();
-            }, 16000);
+            }, 20000);
         };
         
         // Create particles continuously
-        const particleInterval = setInterval(createParticle, 200);
+        const particleInterval = setInterval(createParticle, 300);
         
         // Skip intro function
         const skipIntro = () => {
@@ -294,20 +277,21 @@
             clearInterval(particleInterval);
             loadingTextElement.textContent = 'Entering dashboard...';
             
-            // Add fade out effect
-            document.body.style.transition = 'opacity 0.5s ease-out';
-            document.body.style.opacity = '0';
+            // Add fade out effect for all elements together
+            const mainContent = document.querySelector('.text-center');
+            mainContent.style.transition = 'opacity 1s ease-out';
+            mainContent.style.opacity = '0';
             
-            // Redirect to dashboard
+            // Redirect to dashboard after fade
             setTimeout(() => {
                 window.location.href = '/dashboard';
-            }, 500);
+            }, 1000);
         };
         
-        // Auto-redirect after 4.5 seconds
+        // Auto-redirect after 3 seconds
         setTimeout(() => {
             skipIntro();
-        }, 4500);
+        }, 3000);
         
         // Interactive effects
         document.addEventListener('DOMContentLoaded', () => {
