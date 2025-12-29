@@ -410,7 +410,9 @@
                         x: {
                             grid: {
                                 display: false
-                            }
+                            },
+                            barPercentage: 0.4,
+                            categoryPercentage: 0.6
                         }
                     }
                 }

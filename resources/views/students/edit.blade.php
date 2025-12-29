@@ -141,7 +141,9 @@
                                         <option value="active" {{ old('status', $student->status) == 'active' ? 'selected' : '' }}>Active</option>
                                         <option value="inactive" {{ old('status', $student->status) == 'inactive' ? 'selected' : '' }}>Inactive</option>
                                         <option value="suspended" {{ old('status', $student->status) == 'suspended' ? 'selected' : '' }}>Suspended</option>
-                                        <option value="graduated" {{ old('status', $student->status) == 'graduated' ? 'selected' : '' }}>Graduated</option>
+                                        <option value="completed" {{ old('status', $student->status) == 'completed' ? 'selected' : '' }}>Completed</option>
+                                        <option value="failed" {{ old('status', $student->status) == 'failed' ? 'selected' : '' }}>Failed</option>
+                                        <option value="dropped" {{ old('status', $student->status) == 'dropped' ? 'selected' : '' }}>Dropped</option>
                                     </select>
                                     @error('status')
                                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -172,60 +174,18 @@
                                     @enderror
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">State</label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Division</label>
                                     <select name="state" required
                                             class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                        <option value="">Select State</option>
-                                        <option value="Alabama" {{ old('state', $student->state) == 'Alabama' ? 'selected' : '' }}>Alabama</option>
-                                        <option value="Alaska" {{ old('state', $student->state) == 'Alaska' ? 'selected' : '' }}>Alaska</option>
-                                        <option value="Arizona" {{ old('state', $student->state) == 'Arizona' ? 'selected' : '' }}>Arizona</option>
-                                        <option value="Arkansas" {{ old('state', $student->state) == 'Arkansas' ? 'selected' : '' }}>Arkansas</option>
-                                        <option value="California" {{ old('state', $student->state) == 'California' ? 'selected' : '' }}>California</option>
-                                        <option value="Colorado" {{ old('state', $student->state) == 'Colorado' ? 'selected' : '' }}>Colorado</option>
-                                        <option value="Connecticut" {{ old('state', $student->state) == 'Connecticut' ? 'selected' : '' }}>Connecticut</option>
-                                        <option value="Delaware" {{ old('state', $student->state) == 'Delaware' ? 'selected' : '' }}>Delaware</option>
-                                        <option value="Florida" {{ old('state', $student->state) == 'Florida' ? 'selected' : '' }}>Florida</option>
-                                        <option value="Georgia" {{ old('state', $student->state) == 'Georgia' ? 'selected' : '' }}>Georgia</option>
-                                        <option value="Hawaii" {{ old('state', $student->state) == 'Hawaii' ? 'selected' : '' }}>Hawaii</option>
-                                        <option value="Idaho" {{ old('state', $student->state) == 'Idaho' ? 'selected' : '' }}>Idaho</option>
-                                        <option value="Illinois" {{ old('state', $student->state) == 'Illinois' ? 'selected' : '' }}>Illinois</option>
-                                        <option value="Indiana" {{ old('state', $student->state) == 'Indiana' ? 'selected' : '' }}>Indiana</option>
-                                        <option value="Iowa" {{ old('state', $student->state) == 'Iowa' ? 'selected' : '' }}>Iowa</option>
-                                        <option value="Kansas" {{ old('state', $student->state) == 'Kansas' ? 'selected' : '' }}>Kansas</option>
-                                        <option value="Kentucky" {{ old('state', $student->state) == 'Kentucky' ? 'selected' : '' }}>Kentucky</option>
-                                        <option value="Louisiana" {{ old('state', $student->state) == 'Louisiana' ? 'selected' : '' }}>Louisiana</option>
-                                        <option value="Maine" {{ old('state', $student->state) == 'Maine' ? 'selected' : '' }}>Maine</option>
-                                        <option value="Maryland" {{ old('state', $student->state) == 'Maryland' ? 'selected' : '' }}>Maryland</option>
-                                        <option value="Massachusetts" {{ old('state', $student->state) == 'Massachusetts' ? 'selected' : '' }}>Massachusetts</option>
-                                        <option value="Michigan" {{ old('state', $student->state) == 'Michigan' ? 'selected' : '' }}>Michigan</option>
-                                        <option value="Minnesota" {{ old('state', $student->state) == 'Minnesota' ? 'selected' : '' }}>Minnesota</option>
-                                        <option value="Mississippi" {{ old('state', $student->state) == 'Mississippi' ? 'selected' : '' }}>Mississippi</option>
-                                        <option value="Missouri" {{ old('state', $student->state) == 'Missouri' ? 'selected' : '' }}>Missouri</option>
-                                        <option value="Montana" {{ old('state', $student->state) == 'Montana' ? 'selected' : '' }}>Montana</option>
-                                        <option value="Nebraska" {{ old('state', $student->state) == 'Nebraska' ? 'selected' : '' }}>Nebraska</option>
-                                        <option value="Nevada" {{ old('state', $student->state) == 'Nevada' ? 'selected' : '' }}>Nevada</option>
-                                        <option value="New Hampshire" {{ old('state', $student->state) == 'New Hampshire' ? 'selected' : '' }}>New Hampshire</option>
-                                        <option value="New Jersey" {{ old('state', $student->state) == 'New Jersey' ? 'selected' : '' }}>New Jersey</option>
-                                        <option value="New Mexico" {{ old('state', $student->state) == 'New Mexico' ? 'selected' : '' }}>New Mexico</option>
-                                        <option value="New York" {{ old('state', $student->state) == 'New York' ? 'selected' : '' }}>New York</option>
-                                        <option value="North Carolina" {{ old('state', $student->state) == 'North Carolina' ? 'selected' : '' }}>North Carolina</option>
-                                        <option value="North Dakota" {{ old('state', $student->state) == 'North Dakota' ? 'selected' : '' }}>North Dakota</option>
-                                        <option value="Ohio" {{ old('state', $student->state) == 'Ohio' ? 'selected' : '' }}>Ohio</option>
-                                        <option value="Oklahoma" {{ old('state', $student->state) == 'Oklahoma' ? 'selected' : '' }}>Oklahoma</option>
-                                        <option value="Oregon" {{ old('state', $student->state) == 'Oregon' ? 'selected' : '' }}>Oregon</option>
-                                        <option value="Pennsylvania" {{ old('state', $student->state) == 'Pennsylvania' ? 'selected' : '' }}>Pennsylvania</option>
-                                        <option value="Rhode Island" {{ old('state', $student->state) == 'Rhode Island' ? 'selected' : '' }}>Rhode Island</option>
-                                        <option value="South Carolina" {{ old('state', $student->state) == 'South Carolina' ? 'selected' : '' }}>South Carolina</option>
-                                        <option value="South Dakota" {{ old('state', $student->state) == 'South Dakota' ? 'selected' : '' }}>South Dakota</option>
-                                        <option value="Tennessee" {{ old('state', $student->state) == 'Tennessee' ? 'selected' : '' }}>Tennessee</option>
-                                        <option value="Texas" {{ old('state', $student->state) == 'Texas' ? 'selected' : '' }}>Texas</option>
-                                        <option value="Utah" {{ old('state', $student->state) == 'Utah' ? 'selected' : '' }}>Utah</option>
-                                        <option value="Vermont" {{ old('state', $student->state) == 'Vermont' ? 'selected' : '' }}>Vermont</option>
-                                        <option value="Virginia" {{ old('state', $student->state) == 'Virginia' ? 'selected' : '' }}>Virginia</option>
-                                        <option value="Washington" {{ old('state', $student->state) == 'Washington' ? 'selected' : '' }}>Washington</option>
-                                        <option value="West Virginia" {{ old('state', $student->state) == 'West Virginia' ? 'selected' : '' }}>West Virginia</option>
-                                        <option value="Wisconsin" {{ old('state', $student->state) == 'Wisconsin' ? 'selected' : '' }}>Wisconsin</option>
-                                        <option value="Wyoming" {{ old('state', $student->state) == 'Wyoming' ? 'selected' : '' }}>Wyoming</option>
+                                        <option value="">Select Division</option>
+                                        <option value="Barishal" {{ old('state', $student->state) == 'Barishal' ? 'selected' : '' }}>Barishal</option>
+                                        <option value="Chattogram" {{ old('state', $student->state) == 'Chattogram' ? 'selected' : '' }}>Chattogram</option>
+                                        <option value="Dhaka" {{ old('state', $student->state) == 'Dhaka' ? 'selected' : '' }}>Dhaka</option>
+                                        <option value="Khulna" {{ old('state', $student->state) == 'Khulna' ? 'selected' : '' }}>Khulna</option>
+                                        <option value="Mymensingh" {{ old('state', $student->state) == 'Mymensingh' ? 'selected' : '' }}>Mymensingh</option>
+                                        <option value="Rajshahi" {{ old('state', $student->state) == 'Rajshahi' ? 'selected' : '' }}>Rajshahi</option>
+                                        <option value="Rangpur" {{ old('state', $student->state) == 'Rangpur' ? 'selected' : '' }}>Rangpur</option>
+                                        <option value="Sylhet" {{ old('state', $student->state) == 'Sylhet' ? 'selected' : '' }}>Sylhet</option>
                                     </select>
                                     @error('state')
                                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -244,56 +204,7 @@
                                     <label class="block text-sm font-medium text-gray-700 mb-2">Country</label>
                                     <select name="country" required
                                             class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                        <option value="">Select Country</option>
-                                        <option value="United States" {{ old('country', $student->country) == 'United States' ? 'selected' : '' }}>United States</option>
-                                        <option value="Canada" {{ old('country', $student->country) == 'Canada' ? 'selected' : '' }}>Canada</option>
-                                        <option value="United Kingdom" {{ old('country', $student->country) == 'United Kingdom' ? 'selected' : '' }}>United Kingdom</option>
-                                        <option value="Australia" {{ old('country', $student->country) == 'Australia' ? 'selected' : '' }}>Australia</option>
-                                        <option value="Germany" {{ old('country', $student->country) == 'Germany' ? 'selected' : '' }}>Germany</option>
-                                        <option value="France" {{ old('country', $student->country) == 'France' ? 'selected' : '' }}>France</option>
-                                        <option value="Italy" {{ old('country', $student->country) == 'Italy' ? 'selected' : '' }}>Italy</option>
-                                        <option value="Spain" {{ old('country', $student->country) == 'Spain' ? 'selected' : '' }}>Spain</option>
-                                        <option value="Japan" {{ old('country', $student->country) == 'Japan' ? 'selected' : '' }}>Japan</option>
-                                        <option value="China" {{ old('country', $student->country) == 'China' ? 'selected' : '' }}>China</option>
-                                        <option value="India" {{ old('country', $student->country) == 'India' ? 'selected' : '' }}>India</option>
-                                        <option value="Brazil" {{ old('country', $student->country) == 'Brazil' ? 'selected' : '' }}>Brazil</option>
-                                        <option value="Mexico" {{ old('country', $student->country) == 'Mexico' ? 'selected' : '' }}>Mexico</option>
-                                        <option value="Argentina" {{ old('country', $student->country) == 'Argentina' ? 'selected' : '' }}>Argentina</option>
-                                        <option value="Chile" {{ old('country', $student->country) == 'Chile' ? 'selected' : '' }}>Chile</option>
-                                        <option value="Colombia" {{ old('country', $student->country) == 'Colombia' ? 'selected' : '' }}>Colombia</option>
-                                        <option value="Peru" {{ old('country', $student->country) == 'Peru' ? 'selected' : '' }}>Peru</option>
-                                        <option value="Venezuela" {{ old('country', $student->country) == 'Venezuela' ? 'selected' : '' }}>Venezuela</option>
-                                        <option value="South Africa" {{ old('country', $student->country) == 'South Africa' ? 'selected' : '' }}>South Africa</option>
-                                        <option value="Egypt" {{ old('country', $student->country) == 'Egypt' ? 'selected' : '' }}>Egypt</option>
-                                        <option value="Nigeria" {{ old('country', $student->country) == 'Nigeria' ? 'selected' : '' }}>Nigeria</option>
-                                        <option value="Kenya" {{ old('country', $student->country) == 'Kenya' ? 'selected' : '' }}>Kenya</option>
-                                        <option value="Morocco" {{ old('country', $student->country) == 'Morocco' ? 'selected' : '' }}>Morocco</option>
-                                        <option value="Ghana" {{ old('country', $student->country) == 'Ghana' ? 'selected' : '' }}>Ghana</option>
-                                        <option value="Russia" {{ old('country', $student->country) == 'Russia' ? 'selected' : '' }}>Russia</option>
-                                        <option value="Poland" {{ old('country', $student->country) == 'Poland' ? 'selected' : '' }}>Poland</option>
-                                        <option value="Netherlands" {{ old('country', $student->country) == 'Netherlands' ? 'selected' : '' }}>Netherlands</option>
-                                        <option value="Belgium" {{ old('country', $student->country) == 'Belgium' ? 'selected' : '' }}>Belgium</option>
-                                        <option value="Switzerland" {{ old('country', $student->country) == 'Switzerland' ? 'selected' : '' }}>Switzerland</option>
-                                        <option value="Austria" {{ old('country', $student->country) == 'Austria' ? 'selected' : '' }}>Austria</option>
-                                        <option value="Sweden" {{ old('country', $student->country) == 'Sweden' ? 'selected' : '' }}>Sweden</option>
-                                        <option value="Norway" {{ old('country', $student->country) == 'Norway' ? 'selected' : '' }}>Norway</option>
-                                        <option value="Denmark" {{ old('country', $student->country) == 'Denmark' ? 'selected' : '' }}>Denmark</option>
-                                        <option value="Finland" {{ old('country', $student->country) == 'Finland' ? 'selected' : '' }}>Finland</option>
-                                        <option value="Ireland" {{ old('country', $student->country) == 'Ireland' ? 'selected' : '' }}>Ireland</option>
-                                        <option value="Portugal" {{ old('country', $student->country) == 'Portugal' ? 'selected' : '' }}>Portugal</option>
-                                        <option value="Greece" {{ old('country', $student->country) == 'Greece' ? 'selected' : '' }}>Greece</option>
-                                        <option value="Turkey" {{ old('country', $student->country) == 'Turkey' ? 'selected' : '' }}>Turkey</option>
-                                        <option value="Israel" {{ old('country', $student->country) == 'Israel' ? 'selected' : '' }}>Israel</option>
-                                        <option value="Saudi Arabia" {{ old('country', $student->country) == 'Saudi Arabia' ? 'selected' : '' }}>Saudi Arabia</option>
-                                        <option value="UAE" {{ old('country', $student->country) == 'UAE' ? 'selected' : '' }}>UAE</option>
-                                        <option value="Singapore" {{ old('country', $student->country) == 'Singapore' ? 'selected' : '' }}>Singapore</option>
-                                        <option value="Malaysia" {{ old('country', $student->country) == 'Malaysia' ? 'selected' : '' }}>Malaysia</option>
-                                        <option value="Thailand" {{ old('country', $student->country) == 'Thailand' ? 'selected' : '' }}>Thailand</option>
-                                        <option value="Indonesia" {{ old('country', $student->country) == 'Indonesia' ? 'selected' : '' }}>Indonesia</option>
-                                        <option value="Philippines" {{ old('country', $student->country) == 'Philippines' ? 'selected' : '' }}>Philippines</option>
-                                        <option value="Vietnam" {{ old('country', $student->country) == 'Vietnam' ? 'selected' : '' }}>Vietnam</option>
-                                        <option value="South Korea" {{ old('country', $student->country) == 'South Korea' ? 'selected' : '' }}>South Korea</option>
-                                        <option value="New Zealand" {{ old('country', $student->country) == 'New Zealand' ? 'selected' : '' }}>New Zealand</option>
+                                        <option value="Bangladesh" {{ old('country', $student->country) == 'Bangladesh' ? 'selected' : '' }}>Bangladesh</option>
                                     </select>
                                     @error('country')
                                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -302,30 +213,6 @@
                             </div>
                         </div>
 
-                        <!-- Parent Information -->
-                        <div class="mb-8">
-                            <h2 class="text-xl font-semibold mb-4 text-gray-800">Parent Information (Optional)</h2>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Parent Name</label>
-                                    <input type="text" name="parent_name"
-                                           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                           value="{{ old('parent_name', $student->parent_name) }}">
-                                    @error('parent_name')
-                                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Parent Phone</label>
-                                    <input type="text" name="parent_phone"
-                                           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                           value="{{ old('parent_phone', $student->parent_phone) }}">
-                                    @error('parent_phone')
-                                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
 
                         <!-- Submit Buttons -->
                         <div class="flex justify-end space-x-4">

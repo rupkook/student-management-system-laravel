@@ -81,6 +81,9 @@ class EnrollmentController extends Controller
 
         Enrollment::create($validated);
 
+        // Update student status based on all enrollments
+        $this->updateStudentStatus($validated['student_id']);
+
         return redirect()->route('enrollments.index')
             ->with('success', 'Enrollment created successfully.');
     }
@@ -110,15 +113,62 @@ class EnrollmentController extends Controller
 
         $enrollment->update($validated);
 
+        // Update student status based on all enrollments
+        $this->updateStudentStatus($enrollment->student_id);
+
         return redirect()->route('enrollments.index')
             ->with('success', 'Enrollment updated successfully.');
     }
 
     public function destroy(Enrollment $enrollment)
     {
+        $studentId = $enrollment->student_id;
         $enrollment->delete();
+
+        // Update student status based on remaining enrollments
+        $this->updateStudentStatus($studentId);
 
         return redirect()->route('enrollments.index')
             ->with('success', 'Enrollment deleted successfully.');
+    }
+
+    /**
+     * Update student status based on all their enrollments
+     */
+    private function updateStudentStatus($studentId)
+    {
+        $student = Student::find($studentId);
+        if (!$student) return;
+
+        // Get all enrollments for this student
+        $enrollments = Enrollment::where('student_id', $studentId)->get();
+
+        if ($enrollments->isEmpty()) {
+            // No enrollments, set to inactive
+            $student->status = 'inactive';
+        } elseif ($enrollments->count() === 1) {
+            // Only one enrollment - match its status exactly
+            $student->status = $enrollments->first()->status;
+        } else {
+            // Multiple enrollments - use the previous logic
+            $allCompleted = $enrollments->every(function ($enrollment) {
+                return $enrollment->status === 'completed';
+            });
+
+            $hasActive = $enrollments->contains(function ($enrollment) {
+                return $enrollment->status === 'active';
+            });
+
+            if ($allCompleted) {
+                $student->status = 'completed';
+            } elseif ($hasActive) {
+                $student->status = 'active';
+            } else {
+                // All dropped/failed/inactive
+                $student->status = 'inactive';
+            }
+        }
+
+        $student->save();
     }
 }

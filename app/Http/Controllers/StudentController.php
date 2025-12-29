@@ -59,8 +59,21 @@ class StudentController extends Controller
             'admission_date' => 'required|date',
         ]);
 
-        // Generate student ID
-        $validated['student_id'] = 'STD' . strtoupper(Str::random(8));
+        // Generate sequential student ID
+        $lastStudent = Student::withTrashed()->orderByRaw('CAST(SUBSTRING(student_id, 4) AS UNSIGNED) DESC')->first();
+        $lastNumber = $lastStudent ? (int)substr($lastStudent->student_id, 3) : 0;
+        $nextNumber = $lastNumber + 1;
+        
+        // Ensure we don't create duplicate IDs
+        do {
+            $newStudentId = 'STD' . str_pad($nextNumber, 2, '0', STR_PAD_LEFT);
+            $exists = Student::where('student_id', $newStudentId)->exists();
+            if ($exists) {
+                $nextNumber++;
+            }
+        } while ($exists);
+        
+        $validated['student_id'] = $newStudentId;
         
         // Handle photo upload
         if ($request->hasFile('photo')) {

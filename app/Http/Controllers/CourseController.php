@@ -47,8 +47,8 @@ class CourseController extends Controller
             'code' => 'required|string|max:20|unique:courses',
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'credit_hours' => 'required|integer|min:1',
-            'level' => 'required|in:beginner,intermediate,advanced',
+            'credit_hours' => 'required|integer|min:1|max:200',
+            'level' => 'required|in:undergraduate,postgraduate,graduate,doctorate',
             'is_active' => 'boolean',
         ]);
 
@@ -75,8 +75,8 @@ class CourseController extends Controller
             'code' => 'required|string|max:20|unique:courses,code,' . $course->id,
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'credit_hours' => 'required|integer|min:1',
-            'level' => 'required|in:beginner,intermediate,advanced',
+            'credit_hours' => 'required|integer|min:1|max:200',
+            'level' => 'required|in:undergraduate,postgraduate,graduate,doctorate',
             'is_active' => 'boolean',
         ]);
 

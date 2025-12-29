@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Course</title>
+    <title>Edit Course</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -41,15 +41,16 @@
                         <a href="{{ route('courses.index') }}" class="text-gray-600 hover:text-gray-800 mr-4">
                             <i class="fas fa-arrow-left"></i>
                         </a>
-                        <h1 class="text-3xl font-bold text-gray-800">Add New Course</h1>
+                        <h1 class="text-3xl font-bold text-gray-800">Edit Course</h1>
                     </div>
                 </div>
             </header>
 
             <div class="p-6">
                 <div class="bg-white rounded-lg shadow p-6">
-                    <form action="{{ route('courses.store') }}" method="POST">
+                    <form action="{{ route('courses.update', $course->id) }}" method="POST">
                         @csrf
+                        @method('PUT')
                         
                         <!-- Course Information -->
                         <div class="mb-8">
@@ -59,7 +60,7 @@
                                     <label class="block text-sm font-medium text-gray-700 mb-2">Course Code</label>
                                     <input type="text" name="code" required
                                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                           value="{{ old('code') }}" placeholder="e.g., CS101">
+                                           value="{{ old('code', $course->code) }}" placeholder="e.g., CS101">
                                     @error('code')
                                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                                     @enderror
@@ -68,7 +69,7 @@
                                     <label class="block text-sm font-medium text-gray-700 mb-2">Course Title</label>
                                     <input type="text" name="title" required
                                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                           value="{{ old('title') }}" placeholder="e.g., Introduction to Computer Science">
+                                           value="{{ old('title', $course->title) }}" placeholder="e.g., Introduction to Computer Science">
                                     @error('title')
                                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                                     @enderror
@@ -77,7 +78,7 @@
                                     <label class="block text-sm font-medium text-gray-700 mb-2">Credit Hours</label>
                                     <input type="number" name="credit_hours" required min="135" max="155"
                                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                           value="{{ old('credit_hours', 135) }}">
+                                           value="{{ old('credit_hours', $course->credit_hours) }}">
                                     @error('credit_hours')
                                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                                     @enderror
@@ -87,10 +88,10 @@
                                     <select name="level" required
                                             class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                                         <option value="">Select Level</option>
-                                        <option value="undergraduate" {{ old('level') == 'undergraduate' ? 'selected' : '' }}>Undergraduate</option>
-                                        <option value="postgraduate" {{ old('level') == 'postgraduate' ? 'selected' : '' }}>Postgraduate</option>
-                                        <option value="graduate" {{ old('level') == 'graduate' ? 'selected' : '' }}>Graduate</option>
-                                        <option value="doctorate" {{ old('level') == 'doctorate' ? 'selected' : '' }}>Doctorate</option>
+                                        <option value="undergraduate" {{ old('level', $course->level) == 'undergraduate' ? 'selected' : '' }}>Undergraduate</option>
+                                        <option value="postgraduate" {{ old('level', $course->level) == 'postgraduate' ? 'selected' : '' }}>Postgraduate</option>
+                                        <option value="graduate" {{ old('level', $course->level) == 'graduate' ? 'selected' : '' }}>Graduate</option>
+                                        <option value="doctorate" {{ old('level', $course->level) == 'doctorate' ? 'selected' : '' }}>Doctorate</option>
                                     </select>
                                     @error('level')
                                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -99,18 +100,21 @@
                                 <div class="md:col-span-2">
                                     <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
                                     <textarea name="description" rows="4"
-                                              class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                              placeholder="Enter course description...">{{ old('description') }}</textarea>
+                                              class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">{{ old('description', $course->description) }}</textarea>
                                     @error('description')
                                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                                     @enderror
                                 </div>
-                                <div>
+                                <div class="md:col-span-2">
                                     <label class="flex items-center">
-                                        <input type="checkbox" name="is_active" value="1" {{ old('is_active', 1) ? 'checked' : '' }}
-                                               class="rounded border-gray-300 text-blue-600 shadow-sm focus:ring-blue-500">
-                                        <span class="ml-2 text-sm text-gray-700">Active Course</span>
+                                        <input type="checkbox" name="is_active" value="1" 
+                                               {{ old('is_active', $course->is_active) ? 'checked' : '' }}
+                                               class="mr-2">
+                                        <span class="text-sm font-medium text-gray-700">Active</span>
                                     </label>
+                                    @error('is_active')
+                                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -123,7 +127,7 @@
                             </a>
                             <button type="submit" 
                                     class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-                                <i class="fas fa-save mr-2"></i> Save Course
+                                <i class="fas fa-save mr-2"></i> Update Course
                             </button>
                         </div>
                     </form>

@@ -8,6 +8,6 @@ class SplashController extends Controller
 {
     public function index()
     {
-        return view('splash.index');
+        return view('splash');
     }
 }

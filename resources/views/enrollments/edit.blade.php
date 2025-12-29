@@ -121,8 +121,9 @@
                         <!-- Status -->
                         <div class="mb-6">
                             <label class="block text-sm font-medium text-gray-700 mb-2">Status</label>
-                            <select name="status" required
-                                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <select name="status" required id="status-select"
+                                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    onchange="toggleGradeInput()">
                                 <option value="">Select Status</option>
                                 <option value="active" {{ $enrollment->status == 'active' ? 'selected' : '' }}>Active</option>
                                 <option value="completed" {{ $enrollment->status == 'completed' ? 'selected' : '' }}>Completed</option>
@@ -137,12 +138,13 @@
                         <!-- Grade -->
                         <div class="mb-6">
                             <label class="block text-sm font-medium text-gray-700 mb-2">Grade (0-100)</label>
-                            <input type="number" name="grade" min="0" max="100" step="0.1"
+                            <input type="number" name="grade" id="grade-input" min="0" max="100" step="0.1"
                                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                                    value="{{ old('grade', $enrollment->grade) }}">
                             @error('grade')
                                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
+                            <p class="text-sm text-gray-500 mt-1" id="grade-help">Grade can only be entered when status is "Completed"</p>
                         </div>
 
                         <!-- Notes -->
@@ -197,9 +199,35 @@
             }
         }
         
-        // Initialize on page load if course is pre-selected
+        function toggleGradeInput() {
+            const statusSelect = document.getElementById('status-select');
+            const gradeInput = document.getElementById('grade-input');
+            const gradeHelp = document.getElementById('grade-help');
+            
+            if (statusSelect.value === 'completed') {
+                gradeInput.disabled = false;
+                gradeInput.classList.remove('bg-gray-100', 'text-gray-500');
+                gradeInput.classList.add('bg-white', 'text-gray-900');
+                gradeHelp.textContent = 'Enter grade for completed enrollment';
+                gradeHelp.classList.remove('text-red-500');
+                gradeHelp.classList.add('text-gray-500');
+            } else {
+                gradeInput.disabled = true;
+                gradeInput.classList.remove('bg-white', 'text-gray-900');
+                gradeInput.classList.add('bg-gray-100', 'text-gray-500');
+                gradeHelp.textContent = 'Grade can only be entered when status is "Completed"';
+                gradeHelp.classList.remove('text-gray-500');
+                gradeHelp.classList.add('text-red-500');
+                
+                // Clear grade if status is not completed
+                gradeInput.value = '';
+            }
+        }
+        
+        // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
             updateCourseInfo();
+            toggleGradeInput();
         });
         
         // Add fade-in animation

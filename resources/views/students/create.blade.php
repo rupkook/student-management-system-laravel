@@ -164,60 +164,18 @@
                                     @enderror
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">State</label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Division</label>
                                     <select name="state" required
                                             class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                        <option value="">Select State</option>
-                                        <option value="Alabama" {{ old('state') == 'Alabama' ? 'selected' : '' }}>Alabama</option>
-                                        <option value="Alaska" {{ old('state') == 'Alaska' ? 'selected' : '' }}>Alaska</option>
-                                        <option value="Arizona" {{ old('state') == 'Arizona' ? 'selected' : '' }}>Arizona</option>
-                                        <option value="Arkansas" {{ old('state') == 'Arkansas' ? 'selected' : '' }}>Arkansas</option>
-                                        <option value="California" {{ old('state') == 'California' ? 'selected' : '' }}>California</option>
-                                        <option value="Colorado" {{ old('state') == 'Colorado' ? 'selected' : '' }}>Colorado</option>
-                                        <option value="Connecticut" {{ old('state') == 'Connecticut' ? 'selected' : '' }}>Connecticut</option>
-                                        <option value="Delaware" {{ old('state') == 'Delaware' ? 'selected' : '' }}>Delaware</option>
-                                        <option value="Florida" {{ old('state') == 'Florida' ? 'selected' : '' }}>Florida</option>
-                                        <option value="Georgia" {{ old('state') == 'Georgia' ? 'selected' : '' }}>Georgia</option>
-                                        <option value="Hawaii" {{ old('state') == 'Hawaii' ? 'selected' : '' }}>Hawaii</option>
-                                        <option value="Idaho" {{ old('state') == 'Idaho' ? 'selected' : '' }}>Idaho</option>
-                                        <option value="Illinois" {{ old('state') == 'Illinois' ? 'selected' : '' }}>Illinois</option>
-                                        <option value="Indiana" {{ old('state') == 'Indiana' ? 'selected' : '' }}>Indiana</option>
-                                        <option value="Iowa" {{ old('state') == 'Iowa' ? 'selected' : '' }}>Iowa</option>
-                                        <option value="Kansas" {{ old('state') == 'Kansas' ? 'selected' : '' }}>Kansas</option>
-                                        <option value="Kentucky" {{ old('state') == 'Kentucky' ? 'selected' : '' }}>Kentucky</option>
-                                        <option value="Louisiana" {{ old('state') == 'Louisiana' ? 'selected' : '' }}>Louisiana</option>
-                                        <option value="Maine" {{ old('state') == 'Maine' ? 'selected' : '' }}>Maine</option>
-                                        <option value="Maryland" {{ old('state') == 'Maryland' ? 'selected' : '' }}>Maryland</option>
-                                        <option value="Massachusetts" {{ old('state') == 'Massachusetts' ? 'selected' : '' }}>Massachusetts</option>
-                                        <option value="Michigan" {{ old('state') == 'Michigan' ? 'selected' : '' }}>Michigan</option>
-                                        <option value="Minnesota" {{ old('state') == 'Minnesota' ? 'selected' : '' }}>Minnesota</option>
-                                        <option value="Mississippi" {{ old('state') == 'Mississippi' ? 'selected' : '' }}>Mississippi</option>
-                                        <option value="Missouri" {{ old('state') == 'Missouri' ? 'selected' : '' }}>Missouri</option>
-                                        <option value="Montana" {{ old('state') == 'Montana' ? 'selected' : '' }}>Montana</option>
-                                        <option value="Nebraska" {{ old('state') == 'Nebraska' ? 'selected' : '' }}>Nebraska</option>
-                                        <option value="Nevada" {{ old('state') == 'Nevada' ? 'selected' : '' }}>Nevada</option>
-                                        <option value="New Hampshire" {{ old('state') == 'New Hampshire' ? 'selected' : '' }}>New Hampshire</option>
-                                        <option value="New Jersey" {{ old('state') == 'New Jersey' ? 'selected' : '' }}>New Jersey</option>
-                                        <option value="New Mexico" {{ old('state') == 'New Mexico' ? 'selected' : '' }}>New Mexico</option>
-                                        <option value="New York" {{ old('state') == 'New York' ? 'selected' : '' }}>New York</option>
-                                        <option value="North Carolina" {{ old('state') == 'North Carolina' ? 'selected' : '' }}>North Carolina</option>
-                                        <option value="North Dakota" {{ old('state') == 'North Dakota' ? 'selected' : '' }}>North Dakota</option>
-                                        <option value="Ohio" {{ old('state') == 'Ohio' ? 'selected' : '' }}>Ohio</option>
-                                        <option value="Oklahoma" {{ old('state') == 'Oklahoma' ? 'selected' : '' }}>Oklahoma</option>
-                                        <option value="Oregon" {{ old('state') == 'Oregon' ? 'selected' : '' }}>Oregon</option>
-                                        <option value="Pennsylvania" {{ old('state') == 'Pennsylvania' ? 'selected' : '' }}>Pennsylvania</option>
-                                        <option value="Rhode Island" {{ old('state') == 'Rhode Island' ? 'selected' : '' }}>Rhode Island</option>
-                                        <option value="South Carolina" {{ old('state') == 'South Carolina' ? 'selected' : '' }}>South Carolina</option>
-                                        <option value="South Dakota" {{ old('state') == 'South Dakota' ? 'selected' : '' }}>South Dakota</option>
-                                        <option value="Tennessee" {{ old('state') == 'Tennessee' ? 'selected' : '' }}>Tennessee</option>
-                                        <option value="Texas" {{ old('state') == 'Texas' ? 'selected' : '' }}>Texas</option>
-                                        <option value="Utah" {{ old('state') == 'Utah' ? 'selected' : '' }}>Utah</option>
-                                        <option value="Vermont" {{ old('state') == 'Vermont' ? 'selected' : '' }}>Vermont</option>
-                                        <option value="Virginia" {{ old('state') == 'Virginia' ? 'selected' : '' }}>Virginia</option>
-                                        <option value="Washington" {{ old('state') == 'Washington' ? 'selected' : '' }}>Washington</option>
-                                        <option value="West Virginia" {{ old('state') == 'West Virginia' ? 'selected' : '' }}>West Virginia</option>
-                                        <option value="Wisconsin" {{ old('state') == 'Wisconsin' ? 'selected' : '' }}>Wisconsin</option>
-                                        <option value="Wyoming" {{ old('state') == 'Wyoming' ? 'selected' : '' }}>Wyoming</option>
+                                        <option value="">Select Division</option>
+                                        <option value="Barishal" {{ old('state') == 'Barishal' ? 'selected' : '' }}>Barishal</option>
+                                        <option value="Chattogram" {{ old('state') == 'Chattogram' ? 'selected' : '' }}>Chattogram</option>
+                                        <option value="Dhaka" {{ old('state') == 'Dhaka' ? 'selected' : '' }}>Dhaka</option>
+                                        <option value="Khulna" {{ old('state') == 'Khulna' ? 'selected' : '' }}>Khulna</option>
+                                        <option value="Mymensingh" {{ old('state') == 'Mymensingh' ? 'selected' : '' }}>Mymensingh</option>
+                                        <option value="Rajshahi" {{ old('state') == 'Rajshahi' ? 'selected' : '' }}>Rajshahi</option>
+                                        <option value="Rangpur" {{ old('state') == 'Rangpur' ? 'selected' : '' }}>Rangpur</option>
+                                        <option value="Sylhet" {{ old('state') == 'Sylhet' ? 'selected' : '' }}>Sylhet</option>
                                     </select>
                                     @error('state')
                                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -236,56 +194,7 @@
                                     <label class="block text-sm font-medium text-gray-700 mb-2">Country</label>
                                     <select name="country" required
                                             class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                        <option value="">Select Country</option>
-                                        <option value="United States" {{ old('country') == 'United States' ? 'selected' : '' }}>United States</option>
-                                        <option value="Canada" {{ old('country') == 'Canada' ? 'selected' : '' }}>Canada</option>
-                                        <option value="United Kingdom" {{ old('country') == 'United Kingdom' ? 'selected' : '' }}>United Kingdom</option>
-                                        <option value="Australia" {{ old('country') == 'Australia' ? 'selected' : '' }}>Australia</option>
-                                        <option value="Germany" {{ old('country') == 'Germany' ? 'selected' : '' }}>Germany</option>
-                                        <option value="France" {{ old('country') == 'France' ? 'selected' : '' }}>France</option>
-                                        <option value="Italy" {{ old('country') == 'Italy' ? 'selected' : '' }}>Italy</option>
-                                        <option value="Spain" {{ old('country') == 'Spain' ? 'selected' : '' }}>Spain</option>
-                                        <option value="Japan" {{ old('country') == 'Japan' ? 'selected' : '' }}>Japan</option>
-                                        <option value="China" {{ old('country') == 'China' ? 'selected' : '' }}>China</option>
-                                        <option value="India" {{ old('country') == 'India' ? 'selected' : '' }}>India</option>
-                                        <option value="Brazil" {{ old('country') == 'Brazil' ? 'selected' : '' }}>Brazil</option>
-                                        <option value="Mexico" {{ old('country') == 'Mexico' ? 'selected' : '' }}>Mexico</option>
-                                        <option value="Argentina" {{ old('country') == 'Argentina' ? 'selected' : '' }}>Argentina</option>
-                                        <option value="Chile" {{ old('country') == 'Chile' ? 'selected' : '' }}>Chile</option>
-                                        <option value="Colombia" {{ old('country') == 'Colombia' ? 'selected' : '' }}>Colombia</option>
-                                        <option value="Peru" {{ old('country') == 'Peru' ? 'selected' : '' }}>Peru</option>
-                                        <option value="Venezuela" {{ old('country') == 'Venezuela' ? 'selected' : '' }}>Venezuela</option>
-                                        <option value="South Africa" {{ old('country') == 'South Africa' ? 'selected' : '' }}>South Africa</option>
-                                        <option value="Egypt" {{ old('country') == 'Egypt' ? 'selected' : '' }}>Egypt</option>
-                                        <option value="Nigeria" {{ old('country') == 'Nigeria' ? 'selected' : '' }}>Nigeria</option>
-                                        <option value="Kenya" {{ old('country') == 'Kenya' ? 'selected' : '' }}>Kenya</option>
-                                        <option value="Morocco" {{ old('country') == 'Morocco' ? 'selected' : '' }}>Morocco</option>
-                                        <option value="Ghana" {{ old('country') == 'Ghana' ? 'selected' : '' }}>Ghana</option>
-                                        <option value="Russia" {{ old('country') == 'Russia' ? 'selected' : '' }}>Russia</option>
-                                        <option value="Poland" {{ old('country') == 'Poland' ? 'selected' : '' }}>Poland</option>
-                                        <option value="Netherlands" {{ old('country') == 'Netherlands' ? 'selected' : '' }}>Netherlands</option>
-                                        <option value="Belgium" {{ old('country') == 'Belgium' ? 'selected' : '' }}>Belgium</option>
-                                        <option value="Switzerland" {{ old('country') == 'Switzerland' ? 'selected' : '' }}>Switzerland</option>
-                                        <option value="Austria" {{ old('country') == 'Austria' ? 'selected' : '' }}>Austria</option>
-                                        <option value="Sweden" {{ old('country') == 'Sweden' ? 'selected' : '' }}>Sweden</option>
-                                        <option value="Norway" {{ old('country') == 'Norway' ? 'selected' : '' }}>Norway</option>
-                                        <option value="Denmark" {{ old('country') == 'Denmark' ? 'selected' : '' }}>Denmark</option>
-                                        <option value="Finland" {{ old('country') == 'Finland' ? 'selected' : '' }}>Finland</option>
-                                        <option value="Ireland" {{ old('country') == 'Ireland' ? 'selected' : '' }}>Ireland</option>
-                                        <option value="Portugal" {{ old('country') == 'Portugal' ? 'selected' : '' }}>Portugal</option>
-                                        <option value="Greece" {{ old('country') == 'Greece' ? 'selected' : '' }}>Greece</option>
-                                        <option value="Turkey" {{ old('country') == 'Turkey' ? 'selected' : '' }}>Turkey</option>
-                                        <option value="Israel" {{ old('country') == 'Israel' ? 'selected' : '' }}>Israel</option>
-                                        <option value="Saudi Arabia" {{ old('country') == 'Saudi Arabia' ? 'selected' : '' }}>Saudi Arabia</option>
-                                        <option value="UAE" {{ old('country') == 'UAE' ? 'selected' : '' }}>UAE</option>
-                                        <option value="Singapore" {{ old('country') == 'Singapore' ? 'selected' : '' }}>Singapore</option>
-                                        <option value="Malaysia" {{ old('country') == 'Malaysia' ? 'selected' : '' }}>Malaysia</option>
-                                        <option value="Thailand" {{ old('country') == 'Thailand' ? 'selected' : '' }}>Thailand</option>
-                                        <option value="Indonesia" {{ old('country') == 'Indonesia' ? 'selected' : '' }}>Indonesia</option>
-                                        <option value="Philippines" {{ old('country') == 'Philippines' ? 'selected' : '' }}>Philippines</option>
-                                        <option value="Vietnam" {{ old('country') == 'Vietnam' ? 'selected' : '' }}>Vietnam</option>
-                                        <option value="South Korea" {{ old('country') == 'South Korea' ? 'selected' : '' }}>South Korea</option>
-                                        <option value="New Zealand" {{ old('country') == 'New Zealand' ? 'selected' : '' }}>New Zealand</option>
+                                        <option value="Bangladesh" {{ old('country') == 'Bangladesh' ? 'selected' : '' }}>Bangladesh</option>
                                     </select>
                                     @error('country')
                                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -294,30 +203,6 @@
                             </div>
                         </div>
 
-                        <!-- Parent Information -->
-                        <div class="mb-8">
-                            <h2 class="text-xl font-semibold mb-4 text-gray-800">Parent Information (Optional)</h2>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Parent Name</label>
-                                    <input type="text" name="parent_name"
-                                           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                           value="{{ old('parent_name') }}">
-                                    @error('parent_name')
-                                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Parent Phone</label>
-                                    <input type="text" name="parent_phone"
-                                           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                           value="{{ old('parent_phone') }}">
-                                    @error('parent_phone')
-                                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
 
                         <!-- Submit Buttons -->
                         <div class="flex justify-end space-x-4">
