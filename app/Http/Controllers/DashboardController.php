@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use App\Models\Course;
 use App\Models\Enrollment;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -47,15 +47,10 @@ class DashboardController extends Controller
         $recentStudents = Student::latest()->take(3)->get();
         $recentCourses = Course::latest()->take(3)->get();
         
-        // Top performing students
-        $topStudents = Student::with(['enrollments' => function($query) {
-                $query->where('grade', '>=', 80);
-            }])
-            ->whereHas('enrollments', function($query) {
-                $query->where('grade', '>=', 80);
-            })
+        // Top performing students (show at least 5 students)
+        $topStudents = Student::with(['enrollments'])
             ->withCount(['enrollments as average_grade' => function($query) {
-                $query->select(\DB::raw('avg(grade)'));
+                $query->select(DB::raw('avg(grade)'));
             }])
             ->orderByDesc('average_grade')
             ->take(5)
